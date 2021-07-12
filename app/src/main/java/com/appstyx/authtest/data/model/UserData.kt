@@ -2,7 +2,7 @@ package com.appstyx.authtest.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class UserData(
     @SerializedName("user")
     val user: User
 ) {

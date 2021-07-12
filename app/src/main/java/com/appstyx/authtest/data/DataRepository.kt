@@ -4,6 +4,7 @@ import android.util.Log
 import com.appstyx.authtest.data.model.Genders
 import com.appstyx.authtest.data.model.SignupRequest
 import com.appstyx.authtest.data.model.TokenResponse
+import com.appstyx.authtest.data.model.UserData
 import com.appstyx.authtest.utils.DataResult
 import com.appstyx.authtest.utils.GENERIC_ERROR_CODE
 import com.appstyx.authtest.utils.GENERIC_ERROR_MESSAGE
@@ -27,6 +28,16 @@ class DataRepository(private val apiService: ApiService) {
             getAPIResult(response)
         } catch (e: Exception) {
             Log.e("signup", ": ${e.localizedMessage}", e.cause)
+            DataResult.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+        }
+    }
+
+    suspend fun getUser(token: String): DataResult<UserData> {
+        return try {
+            val response = apiService.getUserData("Bearer $token")
+            getAPIResult(response)
+        } catch (e: Exception) {
+            Log.e("getUser", ": ${e.localizedMessage}", e.cause)
             DataResult.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
         }
     }

@@ -1,6 +1,5 @@
 package com.appstyx.authtest.ui.signup
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.appstyx.authtest.data.DataRepository
 import com.appstyx.authtest.data.model.Genders
@@ -10,7 +9,10 @@ import com.appstyx.authtest.utils.LoadingStatus
 import com.appstyx.authtest.utils.PrefsUtils
 import kotlinx.coroutines.launch
 
-class SignupViewModel(private val dataRepository: DataRepository, private val prefsUtils: PrefsUtils): ViewModel() {
+class SignupViewModel(
+    private val dataRepository: DataRepository,
+    private val prefsUtils: PrefsUtils
+) : ViewModel() {
 
     private val _genders = MutableLiveData<Genders>()
     val genders: LiveData<Genders>
@@ -34,11 +36,11 @@ class SignupViewModel(private val dataRepository: DataRepository, private val pr
                     prefsUtils.accessToken = result.data.token
                     _token.value = result.data.token
                     prefsUtils.isLoggedIn = true
-                    Log.d("onSignupClick", "onSignupClick: ${result.data}")
                 }
 
                 is DataResult.Error -> {
-                    _loadingStatus.value = LoadingStatus.Error(result.errorCode, result.errorMessage)
+                    _loadingStatus.value =
+                        LoadingStatus.Error(result.errorCode, result.errorMessage)
                 }
             }
         }
@@ -54,13 +56,15 @@ class SignupViewModel(private val dataRepository: DataRepository, private val pr
                 }
 
                 is DataResult.Error -> {
-                    _loadingStatus.value = LoadingStatus.Error(result.errorCode, result.errorMessage)
+                    _loadingStatus.value =
+                        LoadingStatus.Error(result.errorCode, result.errorMessage)
                 }
             }
         }
     }
 
-    class Factory(private val dataRepository: DataRepository, private val prefsUtils: PrefsUtils) : ViewModelProvider.Factory {
+    class Factory(private val dataRepository: DataRepository, private val prefsUtils: PrefsUtils) :
+        ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return SignupViewModel(dataRepository, prefsUtils) as T
