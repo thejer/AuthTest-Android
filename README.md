@@ -24,4 +24,10 @@ Please complete the following tasks to help us better address your Android exper
 - all details about the APIs can be found [here](docs/API.md)
 
 ## Your thoughts
-_Please add here any comments about decisions you made while implementing the requested changes, reasoning about any dependencies you may have added to the project, any issues you may have faced, problematic code you would like to change..._
+Added 3 new dependencies:
+* [Coil](https://coil-kt.github.io/coil/getting_started/) for Image Loading
+* [Retrofit](https://square.github.io/retrofit/) for Network Requests
+* [Coroutines](https://developer.android.com/kotlin/coroutines/) to perform long running processes away from the main thread
+### Other Comments
+* I had a challenge with the routing and navigation using the MainViewModel, and I had to use the MainActivity to change the destination event from child fragments
+* I would have created a BaseFragment and a BaseViewModel that communicate and manage loading states.
