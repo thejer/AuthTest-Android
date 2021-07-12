@@ -9,16 +9,32 @@ import com.appstyx.authtest.ui.home.HomeFragment
 import com.appstyx.authtest.ui.main.MainViewModel.Destination.Home
 import com.appstyx.authtest.ui.main.MainViewModel.Destination.Signup
 import com.appstyx.authtest.ui.signup.SignupFragment
+import com.appstyx.authtest.utils.PrefsUtils
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<MainViewModel>()
+    private lateinit var prefsUtils: PrefsUtils
+
+    private val viewModel: MainViewModel by viewModels {
+        MainViewModel.Factory(prefsUtils)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        prefsUtils = PrefsUtils(
+            this.getSharedPreferences(
+                "global_shared_prefs",
+                MODE_PRIVATE
+            ), Gson()
+        )
 
         initViewModelObservers()
+    }
+
+    fun setDestination(destination: MainViewModel.Destination) {
+        viewModel.changeDestinationEvent.value = destination
     }
 
     private fun initViewModelObservers() {
