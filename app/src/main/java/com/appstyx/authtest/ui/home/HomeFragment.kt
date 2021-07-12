@@ -2,7 +2,6 @@ package com.appstyx.authtest.ui.home
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -97,7 +96,6 @@ class HomeFragment: Fragment() {
     }
 
     private fun setupView(userData: UserData) {
-        Log.d("setupView", "setupView: $userData")
         val user = userData.user
         binding.imageViewAvatar.load(user.avatarURL)
         binding.textViewFirstName.text = user.firstName
