@@ -29,14 +29,6 @@ var EditText.stringContent: String
     get() = text.toString()
     set(value) = setText(value)
 
-fun View.show() {
-    visibility = View.VISIBLE
-}
-
-fun View.hide() {
-    visibility = View.GONE
-}
-
 fun View.showSnackbar(
     snackbarText: String,
     timeLength: Int,
