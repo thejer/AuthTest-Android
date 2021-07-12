@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.appstyx.authtest.common.Event
 import com.appstyx.authtest.utils.PrefsUtils
 
-class MainViewModel( private val prefsUtils: PrefsUtils): ViewModel() {
+class MainViewModel( prefsUtils: PrefsUtils): ViewModel() {
 
     enum class Destination {
         Signup, Home

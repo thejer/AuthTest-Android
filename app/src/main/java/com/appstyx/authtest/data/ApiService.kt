@@ -4,6 +4,7 @@ import com.appstyx.authtest.data.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
@@ -11,7 +12,7 @@ interface ApiService {
     suspend fun getGenders(): Response<BaseAPIResponse<Genders>>
 
     @GET("users/me")
-    suspend fun getUserData(): Response<BaseAPIResponse<User>>
+    suspend fun getUserData(@Header("Authorization") token: String): Response<BaseAPIResponse<UserData>>
 
     @POST("users")
     suspend fun signup(@Body signupRequest: SignupRequest): Response<BaseAPIResponse<TokenResponse>>
