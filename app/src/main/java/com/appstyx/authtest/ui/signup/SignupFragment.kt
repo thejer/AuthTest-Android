@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.appstyx.authtest.data.ApiClient
+import com.appstyx.authtest.data.DataRepository
 import com.appstyx.authtest.databinding.FragmentSignupBinding
 
 class SignupFragment: Fragment() {
@@ -13,7 +15,9 @@ class SignupFragment: Fragment() {
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<SignupViewModel>()
+    private val viewModel: SignupViewModel by viewModels {
+        SignupViewModel.Factory(DataRepository(ApiClient.apiService))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
