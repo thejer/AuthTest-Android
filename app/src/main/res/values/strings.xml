@@ -16,4 +16,5 @@
     <string name="home_avatar">Avatar:</string>
     <string name="select_gender">Select Gender</string>
     <string name="loading_please_wait">Loading, please wait…</string>
+    <string name="fill_fields_error_message">Please make sure all fields are filled.</string>
 </resources>
